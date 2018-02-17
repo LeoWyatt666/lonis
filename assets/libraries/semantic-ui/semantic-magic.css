@@ -1,0 +1,17 @@
+.ui.grid .ui.menu.fluid {
+    margin-left: -2rem;
+    border-left: 0!important;
+    width: calc(100% + 2rem) !important;
+}
+
+.ui.grid .tab {
+    text-align: center;
+}
+
+.ui.sidebar {
+    overflow: visible !important;
+}
+
+.ui.sidebar .dropdown.item .menu {
+    top: 0px !important;
+}

@@ -1,0 +1,36 @@
+RewriteEngine On
+AddDefaultCharset utf-8
+
+Options All -Indexes
+
+<Files .*>
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+#SetEnv CI_ENV production
+
+#Оключаем отслеживание сим-ссылок
+Options +FollowSymLinks
+#Блокируем плохих ботов и роботов
+SetEnvIfNoCase user-Agent ^FrontPage [NC,OR]
+SetEnvIfNoCase user-Agent ^Java.* [NC,OR]
+SetEnvIfNoCase user-Agent ^Microsoft.URL [NC,OR]
+SetEnvIfNoCase user-Agent ^MSFrontPage [NC,OR]
+SetEnvIfNoCase user-Agent ^Offline.Explorer [NC,OR]
+SetEnvIfNoCase user-Agent ^[Ww]eb[Bb]andit [NC,OR]
+SetEnvIfNoCase user-Agent ^Zeus [NC]
+
+ErrorDocument 400 /errors/400.shtml
+ErrorDocument 401 /errors/401.shtml
+ErrorDocument 403 /errors/403.shtml
+ErrorDocument 404 /errors/404.shtml
+ErrorDocument 500 /errors/500.shtml
+
+RewriteCond %{request_method} ^GET$
+RewriteCond %{REQUEST_URI} ^(.+)/$
+RewriteRule ^(.+)$ %1 [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) index.php/$1 [QSA,L]
