@@ -63,6 +63,7 @@ $autoload['libraries'] = array(
     'session',
     'security',
     'language',
+    'email',
     'pagination',
     'parser',
     'assets',
